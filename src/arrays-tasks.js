@@ -411,8 +411,15 @@ function getFalsyValuesCount(arr) {
  *                              [0,0,0,1,0],
  *                              [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  if (typeof n !== 'number' || n <= 0 || !Number.isInteger(n)) {
+    throw new Error(
+      'Invalid input. Please provide a positive integer for the size of the matrix.'
+    );
+  }
+  return Array.from({ length: n }, (value1, i) =>
+    Array.from({ length: n }, (value2, j) => (i === j ? 1 : 0))
+  );
 }
 
 /**
