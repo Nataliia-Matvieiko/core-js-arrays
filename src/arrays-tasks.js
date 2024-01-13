@@ -543,11 +543,9 @@ function shiftArray(arr, n) {
     );
   }
   const shiftAmount = n % arr.length;
-  const shiftedArray =
-    shiftAmount >= 0
-      ? arr.slice(-shiftAmount).concat(arr.slice(0, -shiftAmount))
-      : arr.slice(-shiftAmount).concat(arr.slice(0, -shiftAmount));
-  return shiftedArray;
+  return shiftAmount >= 0
+    ? arr.slice(-shiftAmount).concat(arr.slice(0, -shiftAmount))
+    : arr.slice(-shiftAmount).concat(arr.slice(0, -shiftAmount));
 }
 
 /**
@@ -600,8 +598,16 @@ function sortDigitNamesByNumericOrder(arr) {
  *   swapHeadAndTail([]) => []
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  const { length } = arr;
+  if (length <= 1) {
+    return arr;
+  }
+  const middle = Math.floor(length / 2);
+  const head = arr.slice(0, middle);
+  const tail = arr.slice(-middle);
+  const middleElement = length % 2 === 0 ? [] : [arr[middle]];
+  return [...tail, ...middleElement, ...head];
 }
 
 module.exports = {
